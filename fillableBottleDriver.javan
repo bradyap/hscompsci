@@ -1,0 +1,24 @@
+public class fillableBottleDriver {
+   public static void main(String[] args) {
+   
+   FillableBottle bottleOne = new FillableBottle();
+   FillableBottle bottleTwo = new FillableBottle("Orange", 9);
+   
+   System.out.println(bottleOne.toString());
+   System.out.println(bottleTwo.toString());
+   
+   bottleOne.add(10);
+   bottleTwo.add(6);
+   System.out.println("adding...");
+   System.out.println(bottleOne.toString());
+   System.out.println(bottleTwo.toString());
+      
+   int bottleOneRemoved = bottleOne.remove();
+   int bottleTwoRemoved = bottleTwo.remove();
+   System.out.println("Removed " + bottleOneRemoved + " ounces from bottle one and " + bottleTwoRemoved + " from bottle two."); 
+   
+   System.out.println(bottleOne.toString());
+   System.out.println(bottleTwo.toString());
+   
+   }
+}

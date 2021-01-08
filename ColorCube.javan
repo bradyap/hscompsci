@@ -1,0 +1,32 @@
+public class ColorCube {
+    private int edge;
+    private String color;
+
+    public ColorCube(int len, String col) {
+        edge = len;
+        color = col;
+    }
+
+    public int getEdge() {
+        return edge;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String toString() {
+        return "Cube has size " + edge + " and is " + color + ".";
+    }
+}
+
+public boolean evenSum(int a, int b) {
+    int  c = a + b;
+    
+    if (c % 2 == 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
