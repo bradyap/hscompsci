@@ -130,5 +130,6 @@ public class Permutations {
                 break;
             }
         }
+        input.close();
     }
 }
