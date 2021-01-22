@@ -81,7 +81,7 @@ public class Permutations {
         printArray(nums);
         System.out.println();
 
-        int turns = 2 * arrLength -3;
+        int turns = 2 * arrLength - 3;
 
         while (true) {
             int reverseNum = 0;
