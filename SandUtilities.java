@@ -11,16 +11,13 @@ public class SandUtilities
    //pre:   m!= null
    //post:  for each non-null element of m, changes it to its inverted color
    //       skips any color with the value skip1 and skip2, leaving them unchanged
-   public static void invertColors(Color[][]m, Color skip1, Color skip2)
-   {
+   public static void invertColors(Color[][]m, Color skip1, Color skip2) {
       int n = m.length;
-
+      
       for (int i = 0; i < n; i++) {
          for (int j = 0; j < n; j++) {
-            if (m[i][j] != null) {
-               if (m[i][j] != skip1 || m[i][j] != skip2) {
-                  m[i][j] = invert(m[i][j]);
-               }
+            if (m[i][j] != null && m[i][j] != skip1 && m[i][j] != skip2) {
+               m[i][j] = invert(m[i][j]);
             }
          }
       }
@@ -29,10 +26,10 @@ public class SandUtilities
    //pre:   m is a square 2-D array (m.length==m[0].length)
    //post:  flips the array upside down
    public static void flipUpsideDown(Object[][]m) {
-      int n = m.length - 1;
+      int n = m.length;
       Object temp = new Object();
 
-      for (int i = 0; i < m.length; i++) {
+      for (int i = 0; i < n; i++) {
          for (int j = 0; j < n / 2; j++) {
             temp = m[n - j - 1][i];
             m[n - j - 1][i] = m[j][i];
@@ -67,12 +64,13 @@ public class SandUtilities
          }
       }
    }
+
    //pre:   m is a square 2-D array (m.length==m[0].length)
    //post:  rotates the array 90 degrees to the left
    public static void rotateLeft(Object[][] m) {
       reverse(m);
       transpose(m);
-      }
+   }
 
    //pre:   m is a square 2-D array (m.length==m[0].length)
    //post:  rotates the array 90 degrees to the right
