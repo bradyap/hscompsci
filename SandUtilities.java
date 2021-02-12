@@ -18,8 +18,8 @@ public class SandUtilities
       for (int i = 0; i < n; i++) {
          for (int j = 0; j < n; j++) {
             if (m[i][j] != null) {
-               if (m[i][j] != skip1 && m[i][j] != skip2) {
-                  invert(m[i][j]);
+               if (m[i][j] != skip1 || m[i][j] != skip2) {
+                  m[i][j] = invert(m[i][j]);
                }
             }
          }
