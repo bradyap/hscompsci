@@ -41,7 +41,7 @@ public class SandUtilities
    public static void transpose(Object[][] m) {
       int n = m.length;
       Object temp = new Object();
-
+      
       //https://en.wikipedia.org/wiki/In-place_matrix_transposition
       for (int i = 0; i < (n - 2); i++) {
          for (int j = (i + 1); j < (n - 1); j++) {
@@ -52,23 +52,10 @@ public class SandUtilities
       }
    }
 
-   public static void reverse(Object[][] m ) {
-      int n = m.length;
-      Object temp = new Object();
-
-      for(int j = 0; j < n; j++){
-         for(int i = 0; i < n / 2; i++) {
-            temp = m[j][i];
-            m[j][i] = m[j][n - i - 1];
-            m[j][n - i - 1] = temp;
-         }
-      }
-   }
-
    //pre:   m is a square 2-D array (m.length==m[0].length)
    //post:  rotates the array 90 degrees to the left
    public static void rotateLeft(Object[][] m) {
-      reverse(m);
+      flipUpsideDown(m);
       transpose(m);
    }
 
@@ -76,6 +63,6 @@ public class SandUtilities
    //post:  rotates the array 90 degrees to the right
    public static void rotateRight(Object[][] m) {
       transpose(m);
-      reverse(m);
+      flipUpsideDown(m);
    }      
 }
