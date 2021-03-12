@@ -1,55 +1,34 @@
- public class Person implements Comparable
-{
-   // private data fields
+public class Person implements Comparable<Person> {
    private int age;
    private String name;
    private String eyeColor;
    
-   // constructor
-   // parameters in order are: age, name, and eye color
-   public Person(int a, String n, String ec)
-   {
-      age = a;
-      name = n;
-      eyeColor = ec;
+   public Person(int inAge, String inName, String inEyeColor) {
+      age = inAge;
+      name = inName;
+      eyeColor = inEyeColor;
    }
-   
-   // accessor methods
-   public int getAge()
-   {
+   public int getAge() {
       return age;
    }
-   
-   public String getName()
-   {
+   public String getName() {
       return name;
    }
-   
-   public String getEyeColor()
-   {
+   public String getEyeColor() {
       return eyeColor;
    }
-   
-   // toString method
-   public String toString()
-   {
-      return age + " " + name + " " + eyeColor;
+   public String toString() {
+      return "| Age: " + age + ", Name: " + name + ", Eye color: " + eyeColor;
    }
-   
-   // implementation of the compareTo method
-   // comparison is based first on age, and then on name
-   // returns a negative number if this object is "less than" the parameter
-   // returns a positive number if this object is "greater than" the parameter
-   // returns a 0 if this object is "equal to" the parameter
-   public int compareTo(Object other)
-   {
-      Person o = (Person)other;
-      if (age < o.getAge())
+   public int compareTo(Person input) {
+      if (age < input.getAge()) {
          return -1;
-      else if (age > o.getAge())
+      } 
+      else if (age > input.getAge()) {
          return +1;
-      else // age is the same, so secondarily compare names
-         // just use the return value from Strings compareto method
-         return name.compareTo(o.getName());
+      }
+      else {
+         return name.compareTo(input.getName());
+      }
    }
 }

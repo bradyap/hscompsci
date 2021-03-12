@@ -18,7 +18,7 @@ public class Lab73 {
             }
             else if(in % 2 == 0) {
                 even.add(in);
-            } 
+            }
             else {
                 odd.add(in);
             }
