@@ -4,10 +4,10 @@ public class Cat extends Pet {
     }
 
     public void purr() {
-        System.out.println(super.getName() + "is purring.");
+        System.out.println(getName() + "is purring.");
     }
 
     public void scratch() {
-        System.out.println(super.getName() + "is scratching.");
+        System.out.println(getName() + "is scratching.");
     }
 }

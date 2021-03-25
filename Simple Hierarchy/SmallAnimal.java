@@ -4,6 +4,6 @@ public class SmallAnimal extends Pet {
     }
 
     public void chew() {
-        System.out.println(super.getName() + "is chewing.");
+        System.out.println(getName() + "is chewing.");
     }
 }

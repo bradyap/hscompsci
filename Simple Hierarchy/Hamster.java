@@ -4,6 +4,6 @@ public class Hamster extends SmallAnimal {
     }
 
     public void runOnWheel() {
-        System.out.println(super.getName() + "is running on a wheel.");
+        System.out.println(getName() + "is running on a wheel.");
     }
 }

@@ -4,10 +4,10 @@ public class Dog extends Pet {
     }
 
     public void bark() {
-        System.out.println(super.getName() + "is barking.");
+        System.out.println(getName() + "is barking.");
     }
 
     public void dig() {
-        System.out.println(super.getName() + "is digging.");
+        System.out.println(getName() + "is digging.");
     }
 }

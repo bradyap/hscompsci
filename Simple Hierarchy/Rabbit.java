@@ -4,6 +4,6 @@ public class Rabbit extends SmallAnimal {
     }
 
     public void thump() {
-        System.out.println(super.getName() + "is thumping.");
+        System.out.println(getName() + "is thumping.");
     }
 }
