@@ -1,34 +1,36 @@
 import java.util.Arrays;
 
 public class Horse {
-    private int loc;
-    private int index;
+    private int loc, size, index;
+    private char name;
 
     public Horse() {
         loc = 1;
         index = 0;
+        size = 15;
     }
 
-    public Horse(int inLoc, int inIndex) {
-        if (1 <= inLoc && inLoc <= 15) {
-            loc = inLoc;
-            index = inIndex;
-        }
-        else {
-            System.out.println("Please try again. Make sure the input for location is between 1 and 15.");
-        }
+    public Horse(int inLoc, int inIndex, int inSize, char inName) {
+        loc = inLoc;
+        index = inIndex;
+        size = inSize;
+        name = inName;
     }
     
     public int getLoc() {
         return loc;
     }
-
+    
     public int getIndex() {
         return index;
     }
 
+    public char getName() {
+        return name;
+    }
+
     public void advance() {
-        if (loc < 15) {
+        if (loc < size) {
             loc ++;
         }
     }
@@ -40,9 +42,9 @@ public class Horse {
     }
 
     public String toString() {
-        char[] chars = new char[15];
+        char[] chars = new char[size];
         Arrays.fill(chars, '-');
-        chars[(loc - 1)] = (char)(index + '0');
+        chars[(loc - 1)] = name;
         String str = new String(chars);
         String output = "|" + str + "|";
         return output;

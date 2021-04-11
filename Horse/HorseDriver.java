@@ -1,54 +1,69 @@
+import java.util.Scanner;
+
 public class HorseDriver {
     
     public static void main(String[] args) {
-        race();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Welcome to Horse Race!");
+        String choice = "y";
+        while (choice.equals("y")) {
+            race(input);
+            System.out.print("Would you like to play again? [y/n]");
+            choice = input.nextLine();
+        }
+        System.out.println("Thanks for playing!");
+        input.close();
     }
-    
-    public static void race() {
-        Horse horse0 = new Horse(1, 0);
-        Horse horse1 = new Horse(1, 1);
-        Horse horse2 = new Horse(1, 2);
-        while (horse0.getLoc() < 15 && horse1.getLoc() < 15 && horse2.getLoc() < 15) {
-            horse0.raceStride();
-            horse1.raceStride();
-            horse2.raceStride();
-            System.out.println(horse0.toString());
-            System.out.println(horse1.toString());
-            System.out.println(horse2.toString());
-        }
 
-        int i = 0;
-        if (horse0.getLoc() == 15) {
-            i += 1;
+    private static Boolean winCheck(Horse[] horses, int size, int number) {
+        for(int i = 0; i < number; i++) {
+            if(horses[i].getLoc() == size) {
+                return false;
+            }
         }
-        if (horse1.getLoc() == 15) {
-            i += 2;
+        return true;
+    }
+
+    private static void addHorse(Horse[] horses, int i, int size, char name) {
+        if(Math.random() < 0.5) {
+            horses[i] = new Filly(1, i, size, name);
+        } else {
+            horses[i] = new Horse(1, i, size, name);
         }
-        if (horse2.getLoc() == 15) {
-            i += 4;
+    }
+    public static void race(Scanner input) {
+        
+        int number = 0;
+        while(number == 0 || number > 36) {
+            System.out.println("How many horses would you like to race? (1-36)");
+            number = Integer.parseInt(input.nextLine());
         }
-        switch(i) {
-            case 1:
-                System.out.println("The race is over! Horse #0 takes home the trophy!");
-                break; 
-            case 2:
-                System.out.println("The race is over! Horse #1 takes home the trophy!");
-                break;
-            case 3:
-                System.out.println("The race is over! It's a tie! Horse #0 and Horse #1 are tied for the victory!");
-                break;
-            case 4:
-                System.out.println("The race is over! Horse #2 takes home the trophy!");
-                break;
-            case 5:
-                System.out.println("The race is over! It's a tie! Horse #0 and Horse #2 are tied for the victory!");
-                break;
-            case 6:
-                System.out.println("The race is over! It's a tie! Horse #1 and Horse #2 are tied for the victory!");
-                break;
-            case 7:
-                System.out.println("The race is over! It's a tie! Horse #0, Horse #1, and Horse #2 are all tied for the victory!");
-                break;
+        Horse[] horses = new Horse[number];
+        System.out.println("How long would you like the racetrack to be?");
+        int size = Integer.parseInt(input.nextLine());
+        for(int i = 0; i < Math.min(number, 11); i++) {
+            addHorse(horses, i, size, (char)(i + '0'));
+        }
+        if(number > 10) {
+            char alphabet = 'a';
+            for(int i = 10; i < number; i++) {
+                addHorse(horses, i, size, alphabet);
+                alphabet ++;
+            }
+        }
+        while (winCheck(horses, size, number)) {
+            for(int i = 0; i < number; i++) {
+                horses[i].raceStride();
+            }
+            for(int i = 0; i < number; i++) {
+                System.out.println(horses[i].toString());
+            }
+        }
+        System.out.println("The race is over! Winner(s):");
+        for(int i = 0; i < number; i++) {
+            if(horses[i].getLoc() == size) {
+                System.out.println("Horse " + horses[i].getName());
+            }
         }
     }
 }
