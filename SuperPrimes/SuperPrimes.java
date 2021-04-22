@@ -19,11 +19,11 @@ public class SuperPrimes {
         while(countDigits(i) < numDigits) i++;
         int start = i;
         while(countDigits(i) == numDigits) i++;
-        int stop = i;
+        int stop = i - 1;
 
         // for each number, determine whether it is a superprime
         ArrayList<Integer> superprimes = new ArrayList<Integer>();
-        for(int j = start; j < stop; j++) {
+        for(int j = start; j <= stop; j++) {
             if(superPrime(j)) {
                 superprimes.add(j);
             }
