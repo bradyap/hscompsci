@@ -15,29 +15,22 @@ public class SuperPrimes {
 
         // determine lower and upper bounds for looping
         // over numbers with that many digits
-        int i = 0;
-        while(countDigits(i) < numDigits) i++;
-        int start = i;
-        while(countDigits(i) == numDigits) i++;
-        int stop = i - 1;
+        int start = (int)Math.pow(10, numDigits - 1);
+        int stop = (int)Math.pow(10, numDigits);
 
         // for each number, determine whether it is a superprime
         ArrayList<Integer> superprimes = new ArrayList<Integer>();
-        for(int j = start; j <= stop; j++) {
-            if(superPrime(j)) {
-                superprimes.add(j);
-            }
+        for(int j = start; j < stop; j++) {
+            if(superPrime(j)) superprimes.add(j);
         }
 
         // and if so, output it to the screen.
-        // if there are no superprimes, output "None"1
+        // if there are no superprimes, output "None"
         if(superprimes.isEmpty()) {
             System.out.println("None.");
         } else {
             System.out.println("Superprimes:");
-            for(int temp : superprimes) {
-                System.out.println(temp);
-            }
+            for(int temp : superprimes) System.out.println(temp);
         }
     }
 
@@ -45,25 +38,23 @@ public class SuperPrimes {
     // Recursive method.
     // return true if the provided number is superprime, false otherwise.
     public static boolean superPrime(int x) {
-        if ((x < 10) && isPrime(x))
-            return true;
-        else if (isPrime(x))
-            return superPrime(x / 10);  
-        else
-            return false;
+        if(isPrime(x)) {
+            if(x < 10) return true;
+            return superPrime(x / 10);
+        } else return false;
     }
 
     /* COMPLETE THIS METHOD */
     // non-recursive method.
     // return true if the provided number is prime, false otherwise
+    // https://en.wikipedia.org/wiki/Primality_test interesting article on possible optimizations
     public static boolean isPrime(int num) {
-        for (int i = 2; i < num / 2; i++)
-            if (num % i == 0)
-                return false;
+        if (num <= 1) return false;
+        if (num <= 3) return true;
+        if (num % 2 == 0 || num % 3 == 0) return false;
+        for (int i = 5; i * i <= num; i = i + 6) {
+            if (num % i == 0 || num % (i + 2) == 0) return false;
+        }
         return true;
-    }
-
-    public static int countDigits(int num) {
-        return (int)Math.floor(Math.log10(num) + 1);
     }
 }

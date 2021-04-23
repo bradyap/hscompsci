@@ -1,8 +1,14 @@
 public class test {
     public static void main(String[] args) {
+        String str = "The rain in Spain falls mainly on the plain";
 
+System.out.println(str.substring(4, 22));
     }
     //i was here via ssh
+
+    public static int countDigits(int num) {
+        return (int)Math.floor(Math.log10(num) + 1);
+    }
 
     /*public void findMax(int[][] ary) {
         int max = 0;
