@@ -1,5 +1,7 @@
 {
     "java.project.sourcePaths": [
-        "SuperPrimes"
+        "TicTacToe",
+        "SuperPrimes",
+        "Test"
     ]
 }

@@ -21,8 +21,6 @@ System.out.println(str.substring(4, 22));
             }
         }
 
-        
-        
         for(int i = 0; i < ary.length; i++) {
             for(int j = 0; j < ary[0].length; j++) {
                 if(ary[i][j] == max){
