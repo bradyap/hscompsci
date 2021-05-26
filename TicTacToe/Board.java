@@ -23,7 +23,7 @@ public class Board {
         boolean tied = true;
         for(int i = 0; i < 3; i++) {
 			for(int j = 0; j < 3; j++) {
-                if(arr[i][j] == '-') tied = false;
+                if(arr[i][j] == '\u0000') tied = false;
 		    }
         }
         if(tied) return 't';

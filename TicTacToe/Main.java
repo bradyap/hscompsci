@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+
+        HomeGui homeGui = new HomeGui(); 
+
+        /*
         Scanner input = new Scanner(System.in);
 
         //users input names
@@ -12,8 +16,9 @@ public class Main {
 
         String choice = "y";
         while (choice.equals("y")) {
-            Game game = new Game(playerOne, playerTwo);
-            Gui gui = new Gui(game);
+            Game game = new Game(playerOne, playe
+            rTwo);
+            BoardGui boardGui = new BoardGui(game);
             while(gui.visible) Thread.sleep(1000);
             System.out.print("Would you like to play again? [y/n]");
             input.nextLine();
@@ -21,5 +26,6 @@ public class Main {
         }
         System.out.println("Thanks for playing!");
         input.close();
+        */
     }
 }
