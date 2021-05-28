@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 public class BoardGui {
     public boolean visible = true;
+    public JButton[][] buttons = new JButton[3][3]
 
     public BoardGui(Game game) {
         //initialize frame and panel
@@ -52,9 +53,19 @@ public class BoardGui {
                 panel.add(button);
             }
         }
-
         //assemble and start gui
         frame.add(panel);
         frame.setVisible(true);
+    }
+
+    private class ButtonListener implements ActionListener() {
+        public void ActionPerformed(ActionEvent e) {
+            JButton source = (Jbutton)e.getSource();
+            for(int i = 0; i < 3; i++) {
+                for(int j = 0; j < 3; j++) {
+                    if (buttons[i][j].equals(source)) System.out.println("working")
+                }
+            }
+        }
     }
 }
