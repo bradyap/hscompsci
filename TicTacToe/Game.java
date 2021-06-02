@@ -12,10 +12,12 @@ public class Game {
     }
 
     public char turn(int row, int col) {
-        board.arr[row][col] = symbol;
-        if(symbol == 'x') symbol = 'o';
-        else symbol = 'x';
-        return board.check();
+        if(board.arr[row][col] == 0) {
+            board.arr[row][col] = symbol;
+            if(symbol == 'x') symbol = 'o';
+            else symbol = 'x';
+            return board.check();
+        } else return 'e';
     }
 
     public char getSymbol() {
