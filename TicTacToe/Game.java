@@ -11,13 +11,17 @@ public class Game {
         playerTwo = p2;
     }
 
+    //player takes turn
     public char turn(int row, int col) {
         if(board.arr[row][col] == 0) {
             board.arr[row][col] = symbol;
-            if(symbol == 'x') symbol = 'o';
-            else symbol = 'x';
             return board.check();
         } else return 'e';
+    }
+
+    public void switchPlayer() {
+        if(symbol == 'x') symbol = 'o';
+            else symbol = 'x';
     }
 
     public char getSymbol() {
@@ -30,6 +34,10 @@ public class Game {
 
     public String getPlayerTwo() {
         return playerTwo;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     public void printGame() {

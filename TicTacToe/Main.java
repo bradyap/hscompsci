@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         //initialize frame and panel
         JFrame frame = new JFrame("TicTacToe");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,22 +36,40 @@ public class Main {
         //add buttons
         JPanel buttonPanel = new JPanel();
 
-        //add game button
+        //add game buttons
         JButton buttonOne = new JButton("Play");
         buttonOne.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         buttonOne.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    Game game = new Game(textOne.getText(), textTwo.getText());
-                    BoardGui boardGui = new BoardGui(game);
+                    String p1;
+                    String p2;
+                    //if text boxes are filled, use those values, if not default to p1 and p2
+                    if(!textOne.getText().equals("")) p1 = textOne.getText();
+                    else p1 = "Player One";
+                    if(!textTwo.getText().equals("")) p2 = textTwo.getText();
+                    else p2 = "Player Two";
+                    Game game = new Game(p1, p2);
+                    BoardGui boardGui = new BoardGui(game, false);
+                }
+            }
+        );
+
+        JButton buttonTwo = new JButton("Single Player");
+        buttonTwo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        buttonTwo.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    Game game = new Game("You", "Computer");
+                    BoardGui boardGui = new BoardGui(game, true);
                 }
             }
         );
 
         //add exit button
-        JButton buttonTwo = new JButton("Exit");
-        buttonTwo.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        buttonTwo.addActionListener(
+        JButton buttonThree = new JButton("Exit");
+        buttonThree.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        buttonThree.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     System.exit(0);
@@ -61,13 +79,12 @@ public class Main {
 
         buttonPanel.add(buttonOne);
         buttonPanel.add(buttonTwo);
+        buttonPanel.add(buttonThree);
 
         //assemble and start gui
         panel.add(namePanel);
         panel.add(buttonPanel);
-
         frame.add(panel);
-        //frame.add(buttonPanel);
         frame.setVisible(true);
     }
 }
