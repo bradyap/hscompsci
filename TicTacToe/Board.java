@@ -1,4 +1,4 @@
-public class Board implements Cloneable {
+public class Board {
     public char[][] arr = new char[3][3];
 
     public Board() {}
