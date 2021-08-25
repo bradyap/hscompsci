@@ -1,3 +1,5 @@
-Archive of AP Computer Science A work. 
+Archive of Computer Science A & B work.
+
+This repo is not to be used for anything that compromises the Herndon High School honor code, available [here](https://herndonhs.fcps.edu/node/2131).
 --------
 Brady Pettengill, 2020 - 2021.
