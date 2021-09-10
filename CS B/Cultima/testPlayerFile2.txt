@@ -1,0 +1,59 @@
+103
+Chiles   **name
+-1 -1 -1     **mapMark
+0 0 0 0 0 0 0 0 0     **potions
+0 0 0 0 0     **flowerBoxCount
+0 0 0 0      **specificExperience
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 100 0 0 0 0 0 0 0 0      **stats
+15 266 141 252 88 12 24 12 0 12 11 9 0 0 0      **infoIndexes
+0 0 0 0     **spellHotKeys
+-1 -1 -1 -1 -1 -1 -1 -1 -1     **potionHotKeys
+0 0 0 0 0 0 0 0     **weaponHotKeys
+[]     **effects
+[images/characters/player/unarmed1.Gif, images/characters/player/unarmed2.Gif, images/characters/player/unarmed3.Gif, images/characters/player/unarmed4.Gif]   **images
+[]     **item:itemFrequency
+[]     **spells
+[]   **teleporter-memory
+[Clothes:1, Wolf-pelt:1]  **armor:armorFrequency
+[Fists:1]   **weapon:weaponFrequency for unarmed
+[]   **weapon:weaponFrequency for torch
+[]   **weapon:weaponFrequency for magic staff
+[]   **weapon:weaponFrequency for longstaff
+[]   **weapon:weaponFrequency for spears
+[]   **weapon:weaponFrequency for bows
+[]   **weapon:weaponFrequency for crossbows
+[]   **weapon:weaponFrequency for axes
+[]   **weapon:weaponFrequency for dual-axes
+[]   **weapon:weaponFrequency for hammers
+[]   **weapon:weaponFrequency for daggers
+[]   **weapon:weaponFrequency for swords
+[]   **weapon:weaponFrequency for sword and shield
+[]   **weapon:weaponFrequency for dual blades
+[]   **weapon:weaponFrequency for lute
+0     **imageIndex
+0     **startStoryIndex
+0   **mapIndex
+594   **row
+652   **column
+500   **world-row
+500   **world-column
+world     **locationType
+14     **might
+12     **mind
+30     **agility
+75     **body
+120     **manna
+1    **awareness
+0   **reputation
+1   **bounty
+0   **gold
+221   **experience
+500     **experienceToLevelUp
+0     **weaponSelect
+1     **armorSelect
+5   **rations
+0     **numArrows
+none     **dogBasicInfo
+none     **horseBasicInfo
+1     **days
+9.0     ***time

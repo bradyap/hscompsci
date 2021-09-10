@@ -1,0 +1,2 @@
+251
+**name,charIndex,mapIndex,row,col,homeRow,homeCol,missionIndex,might,mind,agility,body,reputation,hasMet,restoreDay,endChaseDay,origMoveType,locationType,numInfo,weapon,armor,items,gold,effect,maritalStatus

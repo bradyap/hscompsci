@@ -1,0 +1,9 @@
+613
+**name,charIndex,mapIndex,row,col,homeRow,homeCol,missionIndex,might,mind,agility,body,reputation,hasMet,restoreDay,endChaseDay,origMoveType,locationType,numInfo,weapon,armor,items,gold,effect
+Hobud of Mamacuk,0,3,79,151,79,151,none,8,9,7,40,9,false,-1,-1,0,dungeon,3,Fists,Clothes,[],false,0,none,N
+Podemud of Tatidak,0,3,87,142,87,142,none,6,8,9,30,804,false,-1,-1,0,dungeon,2,Fists,Clothes,[],false,0,none,N
+Dason of Podester,0,3,87,151,87,151,none,4,19,9,20,-2,false,-1,-1,0,dungeon,1,Fists,Clothes,[],false,0,none,N
+Licet of Pirisem,0,3,87,157,87,157,none,8,15,10,40,60,false,-1,-1,0,dungeon,2,Fists,Clothes,[],false,0,none,N
+Tanoc of Capurville,0,3,87,162,87,162,none,4,9,9,20,35,false,-1,-1,0,dungeon,3,Fists,Clothes,[],false,0,none,N
+Barrel,79,3,81,144,81,144,none,5,0,0,25,0,false,-1,-1,0,dungeon,-99,none,none,[],false,0,none,N
+Barrel,79,3,82,150,82,150,none,5,0,0,25,0,false,-1,-1,0,dungeon,-99,none,none,[],false,0,none,N
