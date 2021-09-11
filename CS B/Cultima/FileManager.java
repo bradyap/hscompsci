@@ -402,8 +402,7 @@ public class FileManager {
                     line = line.substring(0, pos).trim();
                 // **************TO DO: enter code to process effects from file: Line 12
                 effects = new ArrayList<String>();
-                String temp = line.substring(1, line.length() - 1).trim();
-                // System.out.println("effecs " + temp);
+                String temp = line.substring(1, line.length() - 1).trim();``````
                 parts = temp.split(",");
                 for (int i = 0; i < parts.length; i++) {
                     effects.add(parts[i].trim());
@@ -436,7 +435,7 @@ public class FileManager {
                 // "images/characters/player/saber2.Gif", "images/characters/player/saber3.Gif"
                 // and "images/characters/player/saber4.Gif"
                 fileNames = new ArrayList<String>();
-                temp = line.substring(1, line.indexOf("]") - 1);
+                temp = line.substring(1, line.indexOf("]"));
                 parts = temp.split(",");
                 for (int i = 0; i < parts.length; i++) {
                     fileNames.add(parts[i].trim());
@@ -455,7 +454,6 @@ public class FileManager {
                     line = line.substring(0, pos).trim();
                 // **************TO DO: enter code to process items from file: Line 14
                 items = new ArrayList<String>();
-                System.out.println(temp);
                 temp = line.substring(1, line.indexOf("]"));
 
                 parts = temp.split(",");
@@ -497,9 +495,8 @@ public class FileManager {
                 // 16
                 memory = new LinkedList<Teleporter>();
                 temp = line.substring(1, line.indexOf("]"));
-                parts = temp.split(",");
+                parts = temp.split(", ");
                 for (int i = 0; i < parts.length; i++) {
-
                     String[] secondParts = parts[i].trim().substring(1, parts[i].length() - 1).split(" ");
 
                     int ti, tr, tc;
@@ -572,7 +569,7 @@ public class FileManager {
                     pos = line.indexOf("**");
                     if (pos >= 0)
                         line = line.substring(0, pos).trim();
-                    // System.out.println(line);
+                    System.out.println(line);
                     temp = line.trim().substring(1, line.length());
                     parts = temp.split(",");
 

@@ -1,0 +1,56 @@
+Rodan   **name
+0 42 83     **mapMark
+1 0 0 0 0 0 0 0 0     **potions
+10 10 10 10 10     **flowerBoxCount
+0 52 86 16      **specificExperience
+642 0 2 8 3 4 56 38 12 7 62 380 101 4 303 0 1 205 25 1 0 11 3 0 7 0 64 1 1 2 6 1 9 5 0      **stats
+0 266 0 225 15 7 14 2 21 0 11 0 4 0 0      **infoIndexes
+0 1 0 0     **spellHotKeys
+-1 -1 -1 -1 -1 -1 -1 -1 -1     **potionHotKeys
+2 0 2 1 0 0 14 0     **weaponHotKeys
+[blessed, sullied]     **effects
+[images/characters/player/staff1.Gif, images/characters/player/staff2.Gif, images/characters/player/staff3.Gif, images/characters/player/staff4.Gif]   **images      
+[mannastone, moonjem, loaded-cube, charmring, songpage:1, lockpick:3]     **item:itemFrequency
+[Heal, Cure, Shiftwind, Knowing, Charm, Fear, Flight, Eagle-eye, Timestop, Raise-water, Unseen]     **spells
+[(2 29 21 temple), (0 41 82 world)]   **teleporter-memory
+[Clothes:1, Holocaust-cloak:1, Seaserpent-scale:1, Elk-pelt:2]  **armor:armorFrequency
+[]   **weapon:weaponFrequency for unarmed
+[]   **weapon:weaponFrequency for torch
+[Magestaff:1, Fireball:1, Blindinglight:1, Phasewall:1]   **weapon:weaponFrequency for magic staff
+[]   **weapon:weaponFrequency for longstaff
+[Bright-Halberd:1, Spear:2]   **weapon:weaponFrequency for spears
+[]   **weapon:weaponFrequency for bows
+[]   **weapon:weaponFrequency for crossbows
+[]   **weapon:weaponFrequency for axes
+[]   **weapon:weaponFrequency for dual-axes
+[]   **weapon:weaponFrequency for hammers
+[]   **weapon:weaponFrequency for daggers
+[]   **weapon:weaponFrequency for swords
+[]   **weapon:weaponFrequency for sword and shield
+[]   **weapon:weaponFrequency for dual blades
+[]   **weapon:weaponFrequency for lute
+2     **imageIndex
+2     **startStoryIndex
+3   **mapIndex
+82   **row
+162   **column
+41   **world-row
+82   **world-column
+dungeon_enterance     **locationType
+11     **might
+28     **mind
+38     **agility
+76     **body
+290     **manna
+3    **awareness
+1130   **reputation
+2   **bounty
+15055   **gold
+24982   **experience
+24722     **experienceToLevelUp
+0     **weaponSelect
+2     **armorSelect
+15   **rations
+100     **numArrows
+Gunobir the dog,12,4,39,60     **dogBasicInfo
+none     **horseBasicInfo
