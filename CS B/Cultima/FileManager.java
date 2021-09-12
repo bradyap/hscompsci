@@ -402,7 +402,7 @@ public class FileManager {
                     line = line.substring(0, pos).trim();
                 // **************TO DO: enter code to process effects from file: Line 12
                 effects = new ArrayList<String>();
-                String temp = line.substring(1, line.length() - 1).trim();``````
+                String temp = line.substring(1, line.length() - 1).trim();
                 parts = temp.split(",");
                 for (int i = 0; i < parts.length; i++) {
                     effects.add(parts[i].trim());
@@ -566,6 +566,7 @@ public class FileManager {
                 }
                 for (int i = 0; i < 15; i++) {
                     line = decode(input.nextLine().trim(), encoded);
+                    System.out.println(line);
                     pos = line.indexOf("**");
                     if (pos >= 0)
                         line = line.substring(0, pos).trim();
@@ -577,9 +578,6 @@ public class FileManager {
                         if (parts.length == 1) {
                             continue;
                         }
-                        
-                            
-                        // System.out.println(parts[j]);
 
                         var secondParts = parts[j].trim().split(":");
                         if (j == parts.length - 1) {
@@ -597,8 +595,12 @@ public class FileManager {
                             System.out.println("Error reading weapons and weaponFrequencies from player file int");
                             return null;
                         }
+                        System.out.println(secondParts[0]);
+                        System.out.println(secondParts[1]);
                         weapons[i].add(Weapon.getWeaponWithName(secondParts[0]));
+                        System.out.println(weapons[i]);
                         weaponFrequencies[i].add(Integer.parseInt(secondParts[1]));
+                        System.out.println(weaponFrequencies[i]);
                     }
                 }
                 // **************************DONE!************************************/

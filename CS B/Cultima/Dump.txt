@@ -9,7 +9,7 @@ Rodan   **name
 -1 -1 -1 -1 -1 -1 -1 -1 -1     **potionHotKeys
 2 0 2 1 0 0 14 0     **weaponHotKeys
 [blessed, sullied]     **effects
-[images/characters/player/staff1.Gif, images/characters/player/staff2.Gif, images/characters/player/staff3.Gif, images/characters/player/staff4.Gif]   **images      
+[images/characters/player/staff1.Gif, images/characters/player/staff2.Gif, images/characters/player/staff3.Gif, images/characters/player/staff4.Gif]   **images
 [mannastone, moonjem, loaded-cube, charmring, songpage:1, lockpick:3]     **item:itemFrequency
 [Heal, Cure, Shiftwind, Knowing, Charm, Fear, Flight, Eagle-eye, Timestop, Raise-water, Unseen]     **spells
 [(2 29 21 temple), (0 41 82 world)]   **teleporter-memory
