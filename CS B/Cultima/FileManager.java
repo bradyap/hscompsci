@@ -201,13 +201,8 @@ public class FileManager {
                 mapMark = new int[3];
                 String[] parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    mapMark[i] = Integer.parseInt(parts[i]);
+                    mapMark[i] = Integer.parseInt(parts[i].trim()); //use trim to remove leading/trailing spaces
                 }
-
                 // ******************************************************************/
                 if (mapMark == null || mapMark.length != 3) {
                     System.out.println("Error reading mapMark from player file");
@@ -224,13 +219,8 @@ public class FileManager {
                 potions = new int[Potion.NUM_POTIONS];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    potions[i] = Integer.parseInt(parts[i]);
+                    potions[i] = Integer.parseInt(parts[i].trim());
                 }
-
                 // ******************************************************************/
                 if (potions == null || potions.length != Potion.NUM_POTIONS) {
                     System.out.println("Error reading potions from player file");
@@ -247,13 +237,8 @@ public class FileManager {
                 flowerBoxCount = new int[Player.NUM_FLOWERS];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    flowerBoxCount[i] = Integer.parseInt(parts[i]);
+                    flowerBoxCount[i] = Integer.parseInt(parts[i].trim());
                 }
-
                 // ******************************************************************/
                 if (flowerBoxCount == null || flowerBoxCount.length != Player.NUM_FLOWERS) {
                     System.out.println("Error reading flowerBoxCount from player file");
@@ -271,11 +256,7 @@ public class FileManager {
                 specificExperience = new int[4];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    specificExperience[i] = Integer.parseInt(parts[i]);
+                    specificExperience[i] = Integer.parseInt(parts[i].trim());
                 }
                 // ******************************************************************/
                 if (specificExperience == null || specificExperience.length != 4) {
@@ -293,11 +274,7 @@ public class FileManager {
                 stats = new int[Player.NUM_STATS];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    stats[i] = Integer.parseInt(parts[i]);
+                    stats[i] = Integer.parseInt(parts[i].trim());
                 }
                 // ******************************************************************/
                 if (stats == null || stats.length != Player.NUM_STATS) {
@@ -315,11 +292,7 @@ public class FileManager {
                 infoIndexes = new int[Player.NUM_INFO_INDEXES];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    infoIndexes[i] = Integer.parseInt(parts[i]);
+                    infoIndexes[i] = Integer.parseInt(parts[i].trim());
                 }
                 // ******************************************************************/
                 if (infoIndexes == null || infoIndexes.length != Player.NUM_INFO_INDEXES) {
@@ -337,11 +310,7 @@ public class FileManager {
                 spellHotKeys = new int[4];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    spellHotKeys[i] = Integer.parseInt(parts[i]);
+                    spellHotKeys[i] = Integer.parseInt(parts[i].trim());
                 }
                 // ******************************************************************/
                 if (spellHotKeys == null || spellHotKeys.length != 4) {
@@ -359,11 +328,7 @@ public class FileManager {
                 potionHotKeys = new int[Potion.NUM_POTIONS];
                 parts = line.split(" ");
                 for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
-                    parts[i] = parts[i].trim();
-                    potionHotKeys[i] = Integer.parseInt(parts[i]);
+                    potionHotKeys[i] = Integer.parseInt(parts[i].trim());
                 }
                 // ******************************************************************/
                 if (potionHotKeys == null || potionHotKeys.length != Potion.NUM_POTIONS) {
@@ -380,13 +345,9 @@ public class FileManager {
                 // **************TO DO: enter code to process weaponHotKeys from file: Line 11
                 weaponHotKeys = new Point[4];
                 parts = line.split(" ");
-                for (int i = 0; i < parts.length; i++) {
-                    if (!wordIsInt(parts[i])) {
-                        return null;
-                    }
+                for (int i = 0; i < parts.length; i+=2) {
                     parts[i] = parts[i].trim();
                     weaponHotKeys[i / 2] = new Point(Integer.parseInt(parts[i]), Integer.parseInt(parts[i + 1]));
-                    i++;
                 }
                 // ******************************************************************/
                 if (weaponHotKeys == null || weaponHotKeys.length != 4) {
@@ -477,7 +438,9 @@ public class FileManager {
                 temp = line.substring(1, line.indexOf("]"));
                 parts = temp.split(",");
                 for (int i = 0; i < parts.length; i++) {
-                    spells.add(Spell.getSpellWithName((parts[i].trim())));
+                    if (parts[i].length() > 1) {
+                        spells.add(Spell.getSpellWithName((parts[i].trim())));
+                    }
                 }
                 // ******************************************************************/
                 if (spells == null) {
@@ -497,19 +460,17 @@ public class FileManager {
                 temp = line.substring(1, line.indexOf("]"));
                 parts = temp.split(", ");
                 for (int i = 0; i < parts.length; i++) {
-                    String[] secondParts = parts[i].trim().substring(1, parts[i].length() - 1).split(" ");
+                    if (parts[i].length() > 1) {
+                        String[] secondParts = parts[i].trim().substring(1, parts[i].length() - 1).split(" ");
 
-                    int ti, tr, tc;
-                    if (!wordIsInt(secondParts[0]) || !wordIsInt(secondParts[1]) || !wordIsInt(secondParts[2])) {
-                        System.out.println("Error reading teleporter memory from player file int");
-                        return null;
+                        int ti, tr, tc;
+                        ti = Integer.parseInt(secondParts[0]);
+                        tr = Integer.parseInt(secondParts[1]);
+                        tc = Integer.parseInt(secondParts[2]);
+                        String lt = secondParts[3];
+
+                        memory.add(new Teleporter(ti, tr, tc, lt));
                     }
-
-                    ti = Integer.parseInt(secondParts[0]);
-                    tr = Integer.parseInt(secondParts[1]);
-                    tc = Integer.parseInt(secondParts[2]);
-                    String lt = secondParts[3];
-                    memory.add(new Teleporter(ti, tr, tc, lt));
                 }
                 // ******************************************************************/
                 if (memory == null) {
@@ -532,17 +493,7 @@ public class FileManager {
                 parts = temp.split(",");
 
                 for (int i = 0; i < parts.length; i++) {
-                    // ****************************************************************
-                    // System.out.println(parts[i]);
                     var secondParts = parts[i].trim().split(":");
-                    if (secondParts.length != 2) {
-                        System.out.println("Error reading armorSet and armorFreq from player file len");
-                        return null;
-                    }
-                    if (!wordIsInt(secondParts[1])) {
-                        System.out.println("Error reading armorSet and armorFreq from player file int");
-                        return null;
-                    }
                     armorSet.add(Armor.getArmorWithName(secondParts[0]));
                     armorFreq.add(Integer.parseInt(secondParts[1]));
                 }
@@ -563,44 +514,21 @@ public class FileManager {
                 for (int i = 0; i < 15; i++) {
                     weapons[i] = new ArrayList<Weapon>();
                     weaponFrequencies[i] = new ArrayList<Integer>();
-                }
-                for (int i = 0; i < 15; i++) {
                     line = decode(input.nextLine().trim(), encoded);
-                    System.out.println(line);
                     pos = line.indexOf("**");
                     if (pos >= 0)
                         line = line.substring(0, pos).trim();
-                    System.out.println(line);
                     temp = line.trim().substring(1, line.length());
                     parts = temp.split(",");
-
                     for (int j = 0; j < parts.length; j++) {
-                        if (parts.length == 1) {
-                            continue;
+                        if (parts[j].length() > 1) {
+                            var secondParts = parts[j].trim().split(":");
+                            if (j == parts.length - 1) {
+                                secondParts[1] = secondParts[1].substring(0, secondParts[1].indexOf("]"));
+                            }
+                            weapons[i].add(Weapon.getWeaponWithName(secondParts[0]));
+                            weaponFrequencies[i].add(Integer.parseInt(secondParts[1]));
                         }
-
-                        var secondParts = parts[j].trim().split(":");
-                        if (j == parts.length - 1) {
-                            secondParts[1] = secondParts[1].substring(0, secondParts[1].length() - 1);
-                        }
-                        
-                        System.out.println(secondParts[0] + " " + secondParts[1]);
-                        if (secondParts.length != 2) {
-                            System.out.println("Error reading weapons and weaponFrequencies from player file len");
-                            return null;
-                        }
-                        
-                        if (!wordIsInt(secondParts[1])) {
-
-                            System.out.println("Error reading weapons and weaponFrequencies from player file int");
-                            return null;
-                        }
-                        System.out.println(secondParts[0]);
-                        System.out.println(secondParts[1]);
-                        weapons[i].add(Weapon.getWeaponWithName(secondParts[0]));
-                        System.out.println(weapons[i]);
-                        weaponFrequencies[i].add(Integer.parseInt(secondParts[1]));
-                        System.out.println(weaponFrequencies[i]);
                     }
                 }
                 // **************************DONE!************************************/
@@ -617,8 +545,6 @@ public class FileManager {
                 if (pos >= 0)
                     line = line.substring(0, pos).trim();
                 if (!wordIsInt(line)) {
-                    // System.out.println(line);
-                    System.out.println("Error reading ,hjdgfbsk");
                     return null;
                 }
                 imageIndex = Byte.parseByte(line);
