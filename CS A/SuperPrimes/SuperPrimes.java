@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SuperPrimes {
     /* COMPLETE THIS METHOD */
@@ -18,13 +19,21 @@ public class SuperPrimes {
         int start = (int)Math.pow(10, numDigits - 1);
         int stop = (int)Math.pow(10, numDigits);
 
+        long beg = System.nanoTime(); //start timing execution time
+
         // for each number, determine whether it is a superprime
         ArrayList<Integer> superprimes = new ArrayList<Integer>();
         for(int j = start; j < stop; j++) {
             if(superPrime(j)) superprimes.add(j);
         }
 
-        // and if so, output it to the screen.
+        long end = System.nanoTime(); //stop timing execution time
+        
+        //convert execution times
+        long durationInNano = (end - beg);
+        long durationInMillis = TimeUnit.NANOSECONDS.toMillis(durationInNano);
+        long durationInSec = TimeUnit.MILLISECONDS.toSeconds(durationInMillis);
+
         // if there are no superprimes, output "None"
         if(superprimes.isEmpty()) {
             System.out.println("None.");
@@ -32,6 +41,8 @@ public class SuperPrimes {
             System.out.println("Superprimes:");
             for(int temp : superprimes) System.out.println(temp);
         }
+
+        System.out.println("\nExecution time:\nNanoseconds: " + durationInNano + "\nMilliseconds: " + durationInMillis + "\nSeconds: " + durationInSec);
     }
 
     /* COMPLETE THIS METHOD */
