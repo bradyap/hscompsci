@@ -505,12 +505,12 @@ public class FileManager {
                 }
 
                 // code to read weapons and weaponFrequencies from file: Lines 18-32
-                ArrayList<Weapon>[] weapons = null;
-                ArrayList<Integer>[] weaponFrequencies = null;
+                ArrayList<Weapon>[] weapons = new ArrayList[15];
+                ArrayList<Integer>[] weaponFrequencies = new ArrayList[15];
                 // **************TO DO: enter code to process weapons and weaponFrequencies from
                 // file: Lines 18-32
-                weapons = new ArrayList[15];
-                weaponFrequencies = new ArrayList[15];
+                //weapons = new ArrayList[15];
+                //weaponFrequencies = new ArrayList[15];
                 for (int i = 0; i < 15; i++) {
                     weapons[i] = new ArrayList<Weapon>();
                     weaponFrequencies[i] = new ArrayList<Integer>();
