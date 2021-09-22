@@ -25,6 +25,8 @@ public class BinaryUtils {
         input.close();
     }
 
+    //https://indepth.dev/posts/1019/the-simple-math-behind-decimal-binary-conversion-algorithms
+
     public static int toDecimal(int input) {
         int binary = input;
         int out = 0;

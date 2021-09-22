@@ -1,0 +1,83 @@
+Pixoku is a game of revealing a crude picture by painting pixels when given clues as to where they might be.
+Consider that a crude picture may look like this (where painted pixels are represented with a '*', and non-painted pixels are represented with a '-'):
+
+* - - *
+- * * *
+* - * *
+- - - *
+
+clues are given by listing the number of painted pixels in a row or column that are unbroken chains (with no '-' inbetween).
+So the clues would be given as:
+
+    1 1 2 4
+    1      
+1 1 * - - *	
+3   - * * *	
+1 2 * - * *	
+1   - - - *	
+
+The [1,1] listed in the first row describe that there is one '*', then a break, then one '*' somewhere in the first row.
+The [3]   listed in the second row describes that there are three '*' somewhere in the second row.
+The [1,2] listed in the third row describes that there is one '*', then a break, then two '*' somewhere in the third row.
+The [1]   listed in the last row describes that there is one '*' somewhere in the last row.
+
+The [1,1] listed above the first column describes that there is one '*', then a break, then one '*' in the first column.
+The [1]   listed above the second column descrbes that there is one '*' in that column.
+The [2]   listed above the third column describes that there are two '*' in that column.
+The [4]   listed above the last column describes that there are four '*' in the last column.
+
+The user, when given a blank grid with the numeric clues, can mark any cell as painted, or to mark it with an 'X' to denote that it sould be left blank.
+The game ends when the user correctly paints all pixels to reveal the picture.
+An option is available to be granted one of three hints, each of which will give the user 1, 2 or 3 painted spaces at the expense of a lower score.
+Another option will reveal any painted spaces that are incorrectly marked, of which each takes away from the user's score.
+
+
+Pikoku.java contains some data fields that need to be accessed or modified:
+protected static int[][] board;			//the board that contains the solution 
+						//	(0 for unpainted, 1 for painted)
+protected static int[][] guess;			//the board that the user guesses the solution on 
+                                                //	(0 for unpainted, 2 for unpainted but x-ed out, 3 for unpainted but marked as a mistake, 1 for painted, -1 for painted but given as a hint)
+protected static int score;			//1 point for each correct pixel, -2 for each mistake
+protected static int numErrors;			//counts the number of mistakes
+protected static int hint;			//3 hints given for each game 
+
+Students will complete the following methods in Pixoku.java:
+There is an easy way to test your methods with MethodTester.java.
+
+//*****COMPLETE THIS METHOD********it can be tested in Paint mode
+//pre:   grid is a nonempty array comprised of 0s and 1s	
+//post:  returns a new int array that is an inverted image of the argument grid - 0's become 1's and 1's become 0's
+//       given 1 0 0, returns 0 1 1
+//             0 1 1          1 0 0
+//	 grid is to remain unchanged
+public static int [][] invert(int [][] grid)
+{
+   
+}
+
+//*****COMPLETE THIS METHOD********it can be tested in Paint mode   
+//pre:   grid is a nonempty array comprised of 0s and 1s
+//post:  returns a new int array that is the horizontal mirror image of the argument grid
+//       given 1 0 0, returns 0 0 1
+//             0 1 1          1 1 0
+//	 grid is to remain unchanged
+public static int [][] mirrorFlip(int [][] grid)
+{
+      
+}
+   
+//*****COMPLETE THIS METHOD********
+//pre:  guess and board are the same dimensions
+//post: returns false if, for any element of board that is painted (value 1), the same location in guess is unpainted (value 0, 2 or 3)
+//      returns false if, for any element of board that is unpainted (value 0), the same location in guess is painted (value 1 or -1)  
+//      computes the score, with 1 point for each correctly painted pixel (value 1 in both board and guess), minus (the number of errors * 2), plus the (number of unused hints *2)
+//NOTE: painted pixels are value 1 for regular, -1 for painted pixel given as a hint
+//      unpainted pixels are 0 for regular, 2 for X'ed out or 3 for a pixel marked as a mistake.
+//      the data field numErrors will have the correct value for the number of errors made during the game when the method is called
+//      the data field hint will have the correct value for the number of unused hints when the method is called
+private static boolean checkForWin()
+{
+      
+}
+
+     
