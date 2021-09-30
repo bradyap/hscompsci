@@ -19,7 +19,7 @@ public class SuperPrimes {
         int start = (int)Math.pow(10, numDigits - 1);
         int stop = (int)Math.pow(10, numDigits);
 
-        long beg = System.nanoTime(); //start timing execution time
+        long beg = System.nanoTime();   //start execution time
 
         // for each number, determine whether it is a superprime
         ArrayList<Integer> superprimes = new ArrayList<Integer>();
@@ -27,12 +27,13 @@ public class SuperPrimes {
             if(superPrime(j)) superprimes.add(j);
         }
 
-        long end = System.nanoTime(); //stop timing execution time
+        long end = System.nanoTime();   //stop execution time
         
-        //convert execution times
+        //convert and print execution time
         long durationInNano = (end - beg);
         long durationInMillis = TimeUnit.NANOSECONDS.toMillis(durationInNano);
         long durationInSec = TimeUnit.MILLISECONDS.toSeconds(durationInMillis);
+        System.out.println("\nExecution time:\nNanoseconds: " + durationInNano + "\nMilliseconds: " + durationInMillis + "\nSeconds: " + durationInSec);
 
         // if there are no superprimes, output "None"
         if(superprimes.isEmpty()) {
@@ -41,8 +42,6 @@ public class SuperPrimes {
             System.out.println("Superprimes:");
             for(int temp : superprimes) System.out.println(temp);
         }
-
-        System.out.println("\nExecution time:\nNanoseconds: " + durationInNano + "\nMilliseconds: " + durationInMillis + "\nSeconds: " + durationInSec);
     }
 
     /* COMPLETE THIS METHOD */
