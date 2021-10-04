@@ -31,16 +31,15 @@ public class MyArrayList<anyType> implements ListInterface<anyType> {
    }
 
    public boolean add(anyType x) {  //add element to end of list 
-      numElements++;
       if (numElements == list.length) {   //doubles list size if out of space
          doubleCapacity();
       }
-      list[numElements - 1] = x;
+      list[numElements] = x;
+      numElements++;
       return true;
    }
 
    public boolean add(int index, anyType x) {   //add element to specified position in list 
-      numElements++;  
       if (numElements == list.length) {   //doubles list size if out of space
          doubleCapacity();
       }
@@ -49,6 +48,7 @@ public class MyArrayList<anyType> implements ListInterface<anyType> {
          list[i] = list[i - 1];
       }
       list[index] = x;
+      numElements++;
       return true;
    }
 
@@ -76,16 +76,13 @@ public class MyArrayList<anyType> implements ListInterface<anyType> {
 
    public String toString() { //returns a string representation of valid elements in the list
       String ans = "[";
-      /*if (list[0] != "null") {
+      if (list[0] != null) {
          ans += list[0];   //prints  first element
       }
       for (int i = 1; i < numElements; i++) {   //append comma separated elements to string (excludes first element for pretty printing)
-         if (list[i] != "null") {
+         if (list[i] != null) {
             ans += ", " + list[i];
          }
-      }*/
-      for (int i = 0; i < list.length; i++) {
-         ans += ", " + list[i];
       }
       return ans + "]";
    }
