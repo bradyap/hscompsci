@@ -21,7 +21,7 @@
    *   empty
    */
       Comparable remove(); 
-    
+   
    /**
    *    postcondition: The smallest item in the priority 
    *    queue is returned; the priority queue is

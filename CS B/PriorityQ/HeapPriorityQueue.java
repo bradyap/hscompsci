@@ -37,10 +37,10 @@ public class HeapPriorityQueue implements PriorityQueue
    
    //      a new element has been added to the next available place in the items array
    //post: continually swaps the new element added to the end with the parent until items array is in heap order again
-   private void reheapUp()
-   {
-   //OMG - YOU HAVE TO WRITE THIS!	
-   
+   private void reheapUp() {
+      for (int i = numItems; i > 1 && higherPriority(items[i], items[i / 2]); i = i / 2) {
+         swap(items, i, i / 2);
+      }
    }
 
    //post:  adds object into the heap such that the heap order is maintained (highest priority == low value)
@@ -56,10 +56,22 @@ public class HeapPriorityQueue implements PriorityQueue
    
    //      the last element has alreay been copied into index 1
    //post: continually swaps the element that stats at index 1 with the higher priority of its possible kids until items array is in heap order
-   private void reheapDown()
-   {
-   //HOLY CRAP - YOU HAVE TO WRITE THIS ONE TOO!
-   
+   private void reheapDown() {
+      int i = 1; //start at index 1
+      while (i * 2 <= numItems) { //while it has a child
+         int j = i * 2; //index of child 
+         if (i * 2 + 1 <= numItems) { //if right child exists
+            if (higherPriority(items[i * 2 + 1], items[i * 2])) { //if right child is higher priority than left child, set child index accordingly
+               j = i * 2 + 1;
+            }
+         }
+         if (higherPriority(items[j], items[i])) { //swap if highest priority child is higher priority than current index
+            swap(items, i, j);
+            i = j; //set current index to new location of number
+         } else {
+            break;
+         }
+      }
    }
 
    //pre:  numItems > 0
