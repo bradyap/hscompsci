@@ -80,12 +80,94 @@ public class animalGuesserShell
    {
       return (ans.toLowerCase().equals("yes") || ans.toLowerCase().equals("y"));
    }
+
+   public static String[] modify(String[] array) {
+      int realElementValue = 0;
+      for (int i = 0; i < array.length; i++) {
+         if (!(array[i].equals("0"))) {
+            if (i * 2 + 1 > array.length) {
+               String[] doubleList = new String[array.length * 2];
+
+               for (int j = 0; j < array.length; j++) {
+                  doubleList[j] = array[j];
+
+               }
+
+               for (int k = array.length; k < doubleList.length; k++) {
+                  doubleList[k] = "0";
+               }
+               array = doubleList;
+            }
+         }
+      }
+      return array;
+   }
    
-   public static void main(String argv[])throws IOException
-   {
+   public static void main(String argv[])throws IOException {
       Scanner input = new Scanner(System.in);
-      	
-      
-      
-   } 
+      String[] words = modify(readFile("animal.txt"));
+
+      System.out.println("Welcome to Animal Guesser!\nThink of an animal - I will ask you a series of yes or no questions, lets see if I can guess the animal!");
+
+      boolean playing = true;
+      while (playing) {
+         boolean t = false;
+         boolean f = false;
+
+         for (int i = 1; i < words.length;) {
+            while (true) {
+               System.out.print(words[i] + "\n");
+               String in = input.nextLine();
+               
+               t = isYes(in);
+               f = isNo(in);
+
+               if (!t && !f) {
+                  System.out.println("Invalid input. Please try again.");
+                  continue;
+               }
+
+               break;
+            }
+
+            if (t) {
+               if (words[i * 2 + 1].equals("0")) {
+                  System.out.println("Animal guessed - sucks to suck!");
+                  break;
+               }
+               i = i * 2 + 1;
+            }
+
+            if (f) {
+               if (words[i * 2].equals("0")) {
+                  System.out.println("You win! What was your animal?");
+
+                  String animalIn = input.nextLine();
+                  String otherAnimal = words[i].substring(words[i].indexOf("a"), words[i].length() - 1);
+
+                  System.out.println("Please enter a question that is true for a(n) " + animalIn + " and false for " + otherAnimal + ".");
+                  String question = input.nextLine();
+
+                  words[i] = question;
+                  words[i * 2] = "Is it a " + otherAnimal + "?";
+                  words[i * 2 + 1] = "Is it a " + animalIn + "?";
+
+                  break;
+               }
+               i = i * 2;
+            }
+         }
+
+         System.out.println("Input \"y\" to play again, \"n\" to quit.");
+         if (!input.nextLine().toLowerCase().equals("y")) {
+            playing = false;
+         }
+
+      } 
+
+      System.out.println("Thanks for playing Animal Guesser!");
+      writeToFile(words, "animal.txt");
+      input.close();
+
+   }
 }

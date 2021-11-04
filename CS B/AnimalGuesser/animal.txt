@@ -1,12 +1,12 @@
 unused heap top
 Is it a mammal?
 Is it a bird?
-Is it feline?
+Is it a feline?
 Is it a fish?
 Is it flightless?
 Is it a primate?
 Is it a common house pet?
-Is it an alligator?
+Is it legless?
 Is it a shark?
 Is it a hawk?
 Is it an emu?
@@ -14,3 +14,19 @@ Is it a horse?
 Is it a gorilla?
 Is it a lion?
 Is it a house cat?
+Is it a an alligator?
+Is it a Snake?
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
