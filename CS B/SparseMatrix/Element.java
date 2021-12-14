@@ -1,4 +1,4 @@
-public class Element {
+public class Element<anyType> {
 
     private anyType val;
     private int key;
