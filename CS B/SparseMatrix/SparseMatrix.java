@@ -23,12 +23,12 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
       return null; // if matrix is empty or key is not found
    }
 
-   public anyType set(anyType val, int r, int c) {
+   public anyType set(int r, int c, anyType val) {
       int key = getKey(r, c);
       Element<anyType> element = new Element<anyType>(key, val, r, c); // create new element
       for (int i = 0; i < matrix.size(); i++) { // loop through matrix
          if (matrix.get(i).getKey() == key) { // if key matches
-            anyType oldElement = matrix.set(i, element); // replace old element
+            Element<anyType> oldElement = matrix.set(i, element); // replace old element
             return oldElement.getValue(); // return old element
          }
       }
@@ -36,7 +36,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
       return null;
    }
 
-   public void add(anyType val, int r, int c) {
+   public void add(int r, int c, anyType val) {
       int key = getKey(r, c);
       Element<anyType> element = new Element<anyType>(key, val, r, c); // create new element
       for (int i = 0; i < matrix.size(); i++) { // loop through matrix
@@ -53,7 +53,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
          int key = getKey(r, c); 
          for (int i = 0; i < matrix.size(); i++) { // loop through matrix
             if (matrix.get(i).getKey() == key) {  
-               return matrix.remove(i);
+               return matrix.remove(i).getValue();
             }
          }
       }
@@ -85,7 +85,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
             anyType element = null;
             for (int i = 0; i < matrix.size(); i++) {
                if (matrix.get(i).getKey() == key) {
-                  element = matrix.get(i).getObject();
+                  element = matrix.get(i).getValue();
                   break;
                }
             } if (element != null) {
