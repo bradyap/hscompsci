@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 public class SparseMatrix<anyType> implements Matrixable<anyType> {
-   private ArrayList<Element> matrix;
+   private ArrayList<Element<anyType>> matrix;
    private int numRows;
    private int numCols;
 
    public SparseMatrix(int r, int c) {
-      matrix = new ArrayList<Element>();
+      matrix = new ArrayList<Element<anyType>>();
       this.numRows = r;
       this.numCols = c;
    }
@@ -16,7 +16,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
          int key = getKey(r, c); 
          for (int i = 0; i < matrix.size(); i++) { // loop through matrix
             if (matrix.get(i).getKey() == key) { // if key matches
-               return matrix.get(i); // return value
+               return matrix.get(i).getValue(); // return value
             }
          }
       }
@@ -25,11 +25,11 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
 
    public anyType set(anyType val, int r, int c) {
       int key = getKey(r, c);
-      anyType element = new anyType(val, key, r, c);  // create new element
+      Element<anyType> element = new Element<anyType>(key, val, r, c); // create new element
       for (int i = 0; i < matrix.size(); i++) { // loop through matrix
          if (matrix.get(i).getKey() == key) { // if key matches
             anyType oldElement = matrix.set(i, element); // replace old element
-            return oldElement; // return old element
+            return oldElement.getValue(); // return old element
          }
       }
       matrix.add(element); // if key is not found, append element to end of matrix
@@ -38,7 +38,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
 
    public void add(anyType val, int r, int c) {
       int key = getKey(r, c);
-      anyType element = new anyType(val, key, r, c); // create new element
+      Element<anyType> element = new Element<anyType>(key, val, r, c); // create new element
       for (int i = 0; i < matrix.size(); i++) { // loop through matrix
          if (matrix.get(i).getKey() > key) { // if key is greater than current key
             matrix.add(i, element); // add element
@@ -73,7 +73,7 @@ public class SparseMatrix<anyType> implements Matrixable<anyType> {
    }
 
    public int numColumns() {
-      return numColumns;
+      return numCols;
    }
 
    public String toString() {
