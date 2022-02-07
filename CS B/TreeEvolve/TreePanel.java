@@ -160,7 +160,10 @@ public class TreePanel extends JPanel
                return;
             SAMPLE_SIZE--;    
          //***COMPLETE THE CODE HERE*****************************************
-         
+            forest = new Tree[SAMPLE_SIZE];
+            forest[0] = forest[0].makeRandomTree();
+            for(int i=1; i<forest.length; i++)
+               forest[i] = forest[0];
          //******************************************************************/
             repaint();
             return;
@@ -171,7 +174,10 @@ public class TreePanel extends JPanel
                return;
             SAMPLE_SIZE++;
          //***COMPLETE THE CODE HERE*****************************************
-         
+            forest = new Tree[SAMPLE_SIZE];
+            forest[0] = forest[0].makeRandomTree();
+            for(int i=1; i<forest.length; i++)
+               forest[i] = forest[0];
          //******************************************************************/
             repaint();
             return;
