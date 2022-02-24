@@ -22,6 +22,7 @@ public class Tree {
       } else if (x.compareTo(root.getValue()) > 0) {
          root.setRight(addHelper(root.getRight(), x));
       }
+
       return root;
    }
    
@@ -47,15 +48,14 @@ public class Tree {
          root.setLeft(removeHelper(root.getLeft(), x));
       } else if (x.compareTo(root.getValue()) > 0) {
          root.setRight(removeHelper(root.getRight(), x));
+      } else if (root.getLeft() == null) {
+         root = root.getRight();
+      } else if (root.getRight() == null) {
+         root = root.getLeft();
       } else {
-         if (root.getLeft() == null) {
-            return root.getRight();
-         } else if (root.getRight() == null) {
-            return root.getLeft();
-         } else {
-            root.setValue(getLow(root.getRight()));
-         }
+         root.setValue(getLow(root.getRight()));
       }
+      
       return root;
    }
    
@@ -69,7 +69,7 @@ public class Tree {
    
    private void preOrderHelper(TreeNode root) {
       if (root != null) {
-         System.out.println(root.getValue() + " ");
+         System.out.print(root.getValue() + " ");
          preOrderHelper(root.getLeft());
          preOrderHelper(root.getRight());
       }
@@ -84,7 +84,7 @@ public class Tree {
    }
    
    private void inOrderHelper(TreeNode root) {
-      if(root!=null) {
+      if (root!=null) {
          inOrderHelper(root.getLeft());
          System.out.print(root.getValue() + " ");    
          inOrderHelper(root.getRight());
@@ -104,7 +104,7 @@ public class Tree {
       if (root != null) {
          postOrderHelper(root.getLeft());
          postOrderHelper(root.getRight());
-         System.out.println(root.getValue() + " ");
+         System.out.print(root.getValue() + " ");
       }
    }
    
@@ -149,17 +149,12 @@ public class Tree {
    
    //post: determines if root is a leaf or not O(1)
    private boolean isLeaf(TreeNode root) {
-      if (root.getLeft() == null && root.getRight() == null) {
-         return true;
-      }
-
-      return false;
+      return root.getLeft() == null && root.getRight() == null;
    }
       
    //post: returns true if only one child O(1)
    private boolean oneKid(TreeNode root) {
-      
-      return false;
+      return (root.getLeft() == null && root.getRight() != null) || (root.getLeft() != null && root.getRight() == null);
    }
       
    //pre: root points to an in-order Binary Search Tree
@@ -170,10 +165,11 @@ public class Tree {
    }
    
    private int sizeHelper(TreeNode root) {
-   //************COMPLETE THIS METHOD*****************************
-   
-   //************************************************************  
-      return 0;
+      if (root == null) {
+         return 0;
+      } else {
+         return 1 + sizeHelper(root.getLeft()) + sizeHelper(root.getRight());
+      }
    }
          
    public int height() {
@@ -184,10 +180,17 @@ public class Tree {
    //post:returns the height (depth) of the tree
    
    public int heightHelper(TreeNode root) {
-   //************COMPLETE THIS METHOD*****************************
-   
-   //************************************************************  
-      return 0;
+      if (root == null) {
+         return - 1;
+      } else {
+         int l = heightHelper(root.getLeft());
+         int r = heightHelper(root.getRight());
+         if (l > r) {
+            return l + 1;
+         } else {
+            return r + 1;
+         }
+      }
    }
    
    //EXTRA CREDIT
@@ -195,7 +198,15 @@ public class Tree {
    //post:returns true if p is an ancestor of c, false otherwise
    
    public boolean isAncestor(TreeNode root, Comparable p, Comparable c) {
-      return false;
+      if (root == null)
+         return false;
+      else if (root.getValue().equals(p))
+         return true;
+      else {
+         boolean l = isAncestor(root.getLeft(), p, c);
+         boolean r = isAncestor(root.getRight(), p, c);
+         return l || r;
+      }
    }
    
    //EXTRA CREDIT
@@ -203,7 +214,12 @@ public class Tree {
    //post:shows all elements of the tree at a particular depth
    
    public void printLevel(TreeNode root, int level) {
-      
+      if (level == 0) {
+         System.out.print(root.getValue());
+      } else {
+         printLevel(root.getLeft(), level - 1);
+         printLevel(root.getRight(), level - 1);
+      }
    }
 
   //Nothing to see here...move along.
