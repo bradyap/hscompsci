@@ -9,11 +9,10 @@ NOTE: This class is the metaphorical "main method" of your program,
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Game extends Canvas {
+public class Game extends Canvas implements KeyListener {
     protected boolean on = true;
     protected int width, height;
     protected Image buffer;
@@ -30,18 +29,26 @@ public class Game extends Canvas {
 
     private Ship ship;
     private ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
-
     private int collisionCt = 0;
     private int newCollisionWith = -1;
     private BufferStrategy strategy;
+
+    // * keyboard input
+    private boolean up = false;
+    private boolean down = false;
+    private boolean left = false;
+    private boolean right = false;
+    private boolean space = false;
 
     public Game() {
         JFrame frame = new JFrame("ASTEROIDS BY ATARI");
         frame.add(this);
         frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         frame.getContentPane().setBackground(Color.BLACK);
+
         frame.setVisible(true);
         frame.setResizable(false);
+
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 System.exit(0);
@@ -53,8 +60,8 @@ public class Game extends Canvas {
         Point center = new Point(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
         ship = new Ship(shipShape, center);
 
-        Point[] asteroidShape;
         // Create some asteroids
+        Point[] asteroidShape;
         for (int i = 0; i < INIT_ASTEROIDS; i++) {
             // Set up asteroid shapes - four different shapes randomly chosen.
             int numPts = (int) (Math.random() * 4) + 5;
@@ -81,13 +88,9 @@ public class Game extends Canvas {
         }
 
         render();
-        // PART ONE - UNCOMMENT THE NEXT LINE TO USE THE KEY LISTENER
-        // addKeyListener(this);
+        addKeyListener(this);
 
-        // Need timer events to make asteroids move - SEH
-        // Removed calls to render from the keyPress events but needed more frequent
-        // rendering by timer
-        int delay = 100; // milliseconds - started at 1000
+        int delay = 50; // game framerate
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 // ...Perform a task...
@@ -110,26 +113,74 @@ public class Game extends Canvas {
             a.paint(brush);
         }
 
+        if (up) {
+            ship.move(SHIP_SPEED);
+        } else if (down) {
+            ship.move(-SHIP_SPEED);
+        }
+        if (left) {
+            ship.rotate(-ROTATION_SPEED);
+        } else if (right) {
+            ship.rotate(ROTATION_SPEED);
+        }
+
     }
 
     public void render() {
         // renders # of frames in the background then shows them in order
-        // the parameter is the number of frames that are cycled through
-        createBufferStrategy(2);
+        int bufferSize = 2;
+        createBufferStrategy(bufferSize);
         strategy = getBufferStrategy();
         Graphics g = null;
 
-        while (strategy.contentsLost()) {
-            g = strategy.getDrawGraphics();
-            paint(g);
+        do {
+            try {
+                g = strategy.getDrawGraphics();
+            } finally {
+                paint(g);
+            }
             strategy.show();
             g.dispose();
-        }
-
+        } while (strategy.contentsLost());
         Toolkit.getDefaultToolkit().sync();
     }
 
     public static void main(String[] args) {
         new Game();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stubd
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            up = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            down = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            left = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            right = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            space = true;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            up = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            down = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            left = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            right = false;
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            space = false;
+        }
     }
 }
