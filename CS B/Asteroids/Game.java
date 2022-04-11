@@ -35,7 +35,6 @@ public class Game extends Canvas implements KeyListener {
 
     // * keyboard input
     private boolean up = false;
-    private boolean down = false;
     private boolean left = false;
     private boolean right = false;
     private boolean space = false;
@@ -90,34 +89,43 @@ public class Game extends Canvas implements KeyListener {
         render();
         addKeyListener(this);
 
-        int delay = 50; // game framerate
+        int delay = 8; // game framerate
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                // ...Perform a task...
                 render();
             }
         };
         new Timer(delay, taskPerformer).start();
-
         requestFocusInWindow();
     }
 
-    public void paint(Graphics brush) {
-
+    public void paint(Graphics g) {
         if (ship != null) {
-            ship.paint(brush);
+            ship.paint(g);
         }
 
         for (Asteroid a : asteroids) {
+
+            ArrayList<Missile> missiles = ship.getMissiles();
+            for (Missile m : missiles) {
+                if (m.collides(a)) {
+                    missiles.remove(m);
+                    asteroids.remove(a);
+                    return;
+                }
+            }
+
+            //randomly pick new rotation direction
+            a.rotate(Math.random() > 0.5 ? ROTATION_SPEED : -ROTATION_SPEED);
+
             a.move();
-            a.paint(brush);
+            a.paint(g);
         }
 
         if (up) {
             ship.move(SHIP_SPEED);
-        } else if (down) {
-            ship.move(-SHIP_SPEED);
         }
+
         if (left) {
             ship.rotate(-ROTATION_SPEED);
         } else if (right) {
@@ -127,7 +135,7 @@ public class Game extends Canvas implements KeyListener {
     }
 
     public void render() {
-        // renders # of frames in the background then shows them in order
+        // buffer and display frames
         int bufferSize = 2;
         createBufferStrategy(bufferSize);
         strategy = getBufferStrategy();
@@ -158,8 +166,6 @@ public class Game extends Canvas implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             up = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            down = true;
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             left = true;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
@@ -173,8 +179,6 @@ public class Game extends Canvas implements KeyListener {
     public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             up = false;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            down = false;
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             left = false;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
