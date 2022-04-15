@@ -57,7 +57,7 @@ public class Game extends Canvas implements KeyListener {
         // Create the ship - these points make a triangular ship shape
         Point[] shipShape = { new Point(10, 10), new Point(0, 25), new Point(0, 35), new Point(20, 35), new Point(20, 25) };
         Point center = new Point(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-        ship = new Ship(shipShape, center);
+        ship = new Ship(shipShape, center, MAX_LIVES);
 
         // Create some asteroids
         Point[] asteroidShape;
@@ -89,7 +89,7 @@ public class Game extends Canvas implements KeyListener {
         render();
         addKeyListener(this);
 
-        int delay = 8; // game framerate
+        int delay = 30; // game speed
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 render();
@@ -115,10 +115,22 @@ public class Game extends Canvas implements KeyListener {
                 }
             }
 
+            if (a.collides(ship)) {
+                if (ship.getLives() == 1) {
+                    JOptionPane.showMessageDialog(null, "Game Over!");
+                    System.exit(0);
+                    System.exit(0);
+                } else {
+                    ship.setLives(ship.getLives() - 1);
+                }
+                asteroids.remove(a);
+                return;
+            }
+
             //randomly pick new rotation direction
             a.rotate(Math.random() > 0.5 ? ROTATION_SPEED : -ROTATION_SPEED);
 
-            a.move();
+            a.move(ASTEROID_SPEED);
             a.paint(g);
         }
 
@@ -130,6 +142,11 @@ public class Game extends Canvas implements KeyListener {
             ship.rotate(-ROTATION_SPEED);
         } else if (right) {
             ship.rotate(ROTATION_SPEED);
+        }
+
+        if (space) {
+            ship.fire();
+            space = false;
         }
 
     }

@@ -4,10 +4,20 @@ import java.util.ArrayList;
 
 public class Ship extends Polygon {
     private ArrayList<Missile> missiles = new ArrayList<Missile>();
+    private int lives;
 
-    public Ship(Point[] shape, Point loc) {
+    public Ship(Point[] shape, Point loc, int lives) {
         super(shape, loc, 0);
         this.setColor(Color.GREEN);
+        this.lives = lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public int getLives() {
+        return lives;
     }
 
     public void paint(Graphics g) {
