@@ -8,7 +8,7 @@ public class Ship extends Polygon {
 
     public Ship(Point[] shape, Point loc, int lives) {
         super(shape, loc, 0);
-        this.setColor(Color.GREEN);
+        this.setColor(Color.BLUE);
         this.lives = lives;
     }
 

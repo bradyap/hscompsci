@@ -108,7 +108,7 @@ public class Game extends Canvas implements KeyListener {
 
             ArrayList<Missile> missiles = ship.getMissiles();
             for (Missile m : missiles) {
-                if (m.collides(a)) {
+                if (a.collides(m)) {
                     missiles.remove(m);
                     asteroids.remove(a);
                     return;
@@ -118,7 +118,6 @@ public class Game extends Canvas implements KeyListener {
             if (a.collides(ship)) {
                 if (ship.getLives() == 1) {
                     JOptionPane.showMessageDialog(null, "Game Over!");
-                    System.exit(0);
                     System.exit(0);
                 } else {
                     ship.setLives(ship.getLives() - 1);
